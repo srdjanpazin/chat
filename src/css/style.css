@@ -1,0 +1,258 @@
+/*===============================
+	LOGIN SCREEN
+===============================*/
+.login-screen {
+	display: flex;
+	height: 100vh;
+	background: lavender;
+}
+.login-box {
+	background: white;
+	margin: auto;
+	padding: 15px;
+	align-self: center;
+}
+.login-box [type=text] {
+	margin-bottom: 12px;
+}
+.login-box button {
+	float: right;
+}
+
+/*==============================
+	APP MAIN
+==============================*/
+body {
+	font-family: Arial;
+	margin: 0;
+}
+.root {
+	display: flex;
+}
+main {
+	padding: 10px;
+	flex-grow: 1;
+	position: relative;
+}
+#contacts-sidebar {
+	width: 220px;
+	height: 100vh;
+	background: #f6f6f6;
+}
+.sidebar-head {
+	font-weight: bold;
+	font-size: 18px;
+	color: #303030;
+	padding: 8px;
+}
+.contact {
+	padding: 6px;
+}
+.contact:hover {
+	background: #eeeeee;
+	cursor: pointer;
+}
+.btn {
+	color: inherit;
+	background: transparent;
+	font: inherit;
+	padding: 0;
+	border-style: none;
+	outline-style: none;
+	cursor: pointer;
+}
+.ul {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+}
+.chat-btn {
+	width: 60px;
+	height: 60px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background: #f0f0f0;
+	color: #555555;
+	font-weight: bold;
+	text-align: center;
+	border-width: 1px;
+	border-style: solid;
+	border-color: #aaaaaa;
+
+	border-radius: 50%;
+	position: fixed;
+	right: 25px;
+	bottom: 25px;
+	right: 25px;
+	bottom: 25px;
+	box-shadow: 3px 3px 6px #ccc;
+	cursor: pointer;
+	z-index: 1;
+}
+#chats-container {
+	display: flex;
+	flex-direction: row-reverse;
+	position: absolute;
+	right: 15px; /* 150px */
+	bottom: 0;
+}
+.chat {
+	width: 350px;
+	height: 455px;
+	max-height: calc(100vh - 65px); /* max-height will override height */
+	display: flex;
+	margin-left: 15px;
+	flex-direction: column;
+	border-width: 2px 2px 0px 2px;
+	border-style: solid;
+	border-color: DodgerBlue;
+	border-radius: 8px 8px 0 0;
+	position: relative;
+	/*cursor: pointer;*/
+}
+.chat-top {
+	height: 48px;
+	width: 100%;
+	display: flex;
+	align-items: center;
+	background: DodgerBlue;
+	color: white;
+	font-size: 20px;
+	font-weight: bold;
+	box-shadow: 0 3px 4px #aaa;
+	z-index: 1; /* places the shadow above the chat-center */
+}
+.chat-opt-btn {
+	padding: 8px;
+}
+.chat-top-btn-group {
+	display: inline-block;
+	position: absolute;
+	right: 0px;
+}
+.chat-top-sbtn {
+	width: 25px;
+	height: 25px;
+	color: white;
+	font-weight: bold;
+	font-size: 20px;
+	text-align: center;
+	margin: 0px;
+}
+.chat-top-sbtn:hover, .chat-top>button:hover {
+	background-color: #0f71d1;
+}
+.chat-center {
+	width: 100%;
+	height: calc(100% - 55px - 48px);
+	min-height: 0px;
+	background: Azure;
+	
+	overflow-y: auto;
+}
+.chat-bottom {
+	height: 55px;
+	width: 100%;
+	display: flex;
+	align-items: center;
+	background: #f8f8f8;
+}
+.chat-bottom form {
+	margin-left: auto;
+	margin-right: auto;
+	width: 90%;
+}
+.chat-bottom form > button {
+	box-sizing: border-box;
+	width: 10%;
+	background: cyan;
+}
+#type {
+	box-sizing: border-box;
+	width: 88%;
+	padding: 3px 5px;
+	border-radius: 10px;
+}
+.chat-options {
+	width: 310px;
+	background: #f0f0f0;
+	border-radius: 9px;
+	padding: 8px;
+	position: absolute;
+	right: calc(100% + 30px);
+	top: -38px;
+	z-index: 2;
+	cursor: default;
+}
+.chat-options > li {
+				/* add display block */
+	box-sizing: border-box;
+	width: 100%;
+	padding: 8px 9px;
+	cursor: pointer;
+}
+.chat-options > li:hover {
+	background: #ddd;
+}
+.chat-options::after {
+	content: '';
+	border-width: 12px;
+	border-style: solid;
+	border-color: #f0f0f0 #f0f0f0 transparent transparent;
+	position: absolute;
+	right: -12px;
+	top: calc(16px + 38px);
+	transform: rotate(45deg);
+}
+.msg-cont {
+	display: flex;
+	margin: 2px;
+}
+.msg {
+	font-size: 16px;
+	font-weight: normal;
+	padding: 7px;
+	border-radius: 10px;
+	position: relative;
+}
+.msg:hover .time-tooltip {
+	visibility: visible;
+}
+.msg-right {
+	background: deepskyblue;
+	color: white;
+}
+.msg-left {
+	display: inline-block;
+	background: #e0e0e0;
+}
+.msg-time {
+	color: gray;
+	font-size: 12px;
+	text-align: center;
+	margin-top: 8px;
+}
+.flex-padding {
+	flex-grow: 1;
+}
+.time-tooltip {
+	width: max-content;
+	background: black;
+	color: white;
+	font-size: 14px;
+	padding: 6px;
+	opacity: 70%;
+	position: absolute;
+	top: 0;
+	right: 100%;
+	z-index: 1;
+	visibility: hidden;
+}
+
+/*========================
+	DISPLAY
+========================*/
+.block {
+	display: block;
+}

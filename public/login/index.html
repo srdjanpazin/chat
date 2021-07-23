@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<style>
+		body {
+			margin: 0;
+		}
+		.login-screen {
+			display: flex;
+			height: 100vh;
+			background: lavender;
+		}
+		.login-shortcut {
+			display: inline-block;
+			background: limegreen;
+			color: white;
+			font-size: 20px;
+			font-weight: bold;
+			padding: 10px;
+			align-self: center;
+			cursor: pointer;
+		}
+		.flex-center {
+			display: flex;
+			margin: auto;
+			align-self: center;
+		}
+		.login-form {
+			background: white;
+			padding: 15px;
+			margin-left: 80px;
+		}
+		.login-form [type=text] {
+			margin-bottom: 12px;
+		}
+		.login-form button {
+			float: right;
+		}
+		.block {
+			display: block;
+		}
+	</style>
+</head>
+<body>
+	<div class="login-screen">
+		<div class="flex-center">
+			<button class="login-shortcut">Login as Mark</button>
+			<div class="login-form">
+				<label for="email">Email:</label><br>
+				<input class="block" type="text" id="email" name="email" required>
+				<label for="pwd">Password:</label><br>
+				<input class="block" type="password" id="pwd" name="pwd" required><br>
+				<a href="./signup/">Create account</a>
+				<button id="login-btn">Log in</button>
+			</div>
+		</div>
+	</div>
+
+	<script>
+		const loginForm = document.body.querySelector('.login-form');
+		const loginBtn = loginForm.lastElementChild;
+		const loginShortcut = loginForm.previousElementSibling;
+
+		loginBtn.addEventListener('click', async function(ev) {
+			let res;
+			const email = loginForm.children[2].value;
+			const pwd = loginForm.children[5].value;
+			
+			try {
+				res = await fetch('../src/php/auth-user.php', {
+					method: 'POST',
+					headers: {
+						'Content-Type': 'application/x-www-form-urlencoded'
+					},
+					body: 'email=' + encodeURIComponent(email) +
+						'&pwd=' + encodeURIComponent(pwd)
+				});
+			} catch(err) {
+				console.log('Fetch error: ' + err);
+				return;
+			}
+
+			if (res.status != 200) {
+				console.log(await res.text());
+			} else {
+				const userId = await res.text();
+				document.cookie = 'userId=' + userId + '; path=/';
+				window.location.href = '../index.php';
+			}
+
+		});
+		
+		loginShortcut.addEventListener('click', function() {
+			document.cookie = 'userId=mark; path=/';
+			window.location.href = '../index.php';
+		});
+	</script>
+
+</body>
+</html>
