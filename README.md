@@ -1,1 +1,3 @@
-# chat-app-js-php
+# Chat App
+
+Built with JavaScript, PHP, MySQL
